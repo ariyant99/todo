@@ -7,16 +7,17 @@ export function CreateTodo({ todoList, updateTodos}){
     const [ description, setDescription ] = useState('')
 
     function addNewTodo(){
-        setDescription('');
-        setTitle('');
+        console.log("todolist: ",todoList)
         axios.post("http://localhost:3000" + "/todo",{
             title: title,
             description: description
         }).then(()=>{
-            updateTodos(...todoList, {
+            updateTodos([...todoList, {
                 title: title,
                 description: description
-            })
+            }])
+            setTitle('');
+            setDescription('');
         })
     }
 
